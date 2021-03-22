@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/mails', \App\Http\Controllers\Mails\ListMailsController::class)->name('mails.index');
 Route::post('/mails', \App\Http\Controllers\Mails\SendMailController::class)->name('mails.create');
