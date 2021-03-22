@@ -15,8 +15,8 @@ class CreateMailsTable extends Migration
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
-            $table->string('from')->index();
-            $table->string('to')->index();
+            $table->string('sender')->index();
+            $table->string('recipient')->index();
             $table->string('subject')->nullable()->index();
             $table->text('text_content')->nullable();
             $table->text('html_content')->nullable();

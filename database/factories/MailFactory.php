@@ -22,9 +22,9 @@ class MailFactory extends Factory
     public function definition()
     {
         return [
-            'from' => $this->faker->unique()->safeEmail,
-            'to' => $this->faker->unique()->safeEmail,
-            'subject' => $this->faker->words(),
+            'sender' => $this->faker->unique()->safeEmail,
+            'recipient' => $this->faker->unique()->safeEmail,
+            'subject' => $this->faker->text(),
             'text_content' => $this->faker->realText(),
             'html_content' => $this->faker->randomHtml(),
         ];
