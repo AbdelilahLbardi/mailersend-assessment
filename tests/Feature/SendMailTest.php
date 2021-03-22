@@ -123,6 +123,22 @@ class SendMailTest extends TestCase
         $this->assertTrue(Mail::query()->first()->status->sent());
     }
 
+    public function test_mail_was_first_posted_and_then_marked_as_sent_after_successful_sending()
+    {
+        $this->withoutExceptionHandling();
+
+        MailFacade::fake();
+
+        $this->sendNewMail($this->validParams())->assertStatus(201);
+
+        MailFacade::assertSent(Email::class);
+
+        $this->assertCount(2, Mail::query()->first()->statuses);
+
+        $this->assertTrue(Mail::query()->first()->statuses->first()->sent());
+        $this->assertTrue(Mail::query()->first()->statuses->last()->posted());
+    }
+
 
     public function test_new_mail_has_correct_text()
     {
