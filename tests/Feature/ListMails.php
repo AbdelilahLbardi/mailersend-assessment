@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Mail;
+use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -87,5 +88,59 @@ class ListMails extends TestCase
         $this->getJson(route('mails.index', ['subject' => 'important landing']))
             ->assertJsonCount(5, 'data')
             ->assertJsonPath('meta.total', 5);
+    }
+
+    public function test_filtering_emails_by_status_0_returns_all_emails()
+    {
+        $this->generateDifferentMailsStatuses();
+
+        $this->getJson(route('mails.index', ['status' => 0]))
+            ->assertJsonCount(3, 'data')
+            ->assertJsonPath('meta.total', 3);
+    }
+
+    public function test_filtering_emails_by_status_posted_returns_only_posted()
+    {
+        $this->generateDifferentMailsStatuses();
+
+        $this->withoutExceptionHandling();
+
+        $this->getJson(route('mails.index', ['status' => Status::POSTED]))
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.status.label', 'Posted')
+            ->assertJsonPath('meta.total', 1);
+    }
+
+    public function test_filtering_emails_by_status_sent_returns_only_sent()
+    {
+        $this->generateDifferentMailsStatuses();
+
+        $this->withoutExceptionHandling();
+
+        $this->getJson(route('mails.index', ['status' => Status::SENT]))
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.status.label', 'Sent')
+            ->assertJsonPath('meta.total', 1);
+    }
+
+    public function test_filtering_emails_by_status_failed_returns_only_failed()
+    {
+        $this->generateDifferentMailsStatuses();
+
+        $this->withoutExceptionHandling();
+
+        $this->getJson(route('mails.index', ['status' => Status::FAILED]))
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.status.label', 'Failed')
+            ->assertJsonPath('meta.total', 1);
+    }
+
+    private function generateDifferentMailsStatuses()
+    {
+        Status::factory()->posted()->create();
+
+        Status::factory()->sent()->create();
+
+        Status::factory()->failed()->create();
     }
 }
