@@ -12,6 +12,8 @@ class Attachment extends Model
 
     protected $guarded = [];
 
+    const MAX_FILE_SIZE = 5 * 1000;
+
     /**
      * @return BelongsTo
      */
