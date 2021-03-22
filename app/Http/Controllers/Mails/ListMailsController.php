@@ -23,7 +23,8 @@ class ListMailsController
             ->when(request('subject'), function ($query) {
                 $query->where('subject', 'like', '%' . request('subject') . '%');
             })
-            ->paginate(20);
+            ->paginate(20)
+            ->appends(request()->except('page'));
 
         return new MailCollection($mails);
     }
