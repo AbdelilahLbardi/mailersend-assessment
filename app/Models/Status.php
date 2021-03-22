@@ -17,7 +17,6 @@ class Status extends Model
     const SENT = 2;
     const FAILED = 3;
 
-
     /**
      * @return BelongsTo
      */
@@ -31,7 +30,7 @@ class Status extends Model
      */
     public function posted(): bool
     {
-        return $this->attributes['status'] === self::POSTED;
+        return $this->attributes['status'] == self::POSTED;
     }
 
     /**
@@ -39,7 +38,7 @@ class Status extends Model
      */
     public function sent(): bool
     {
-        return $this->attributes['status'] === self::SENT;
+        return $this->attributes['status'] == self::SENT;
     }
 
     /**
@@ -47,7 +46,7 @@ class Status extends Model
      */
     public function failed(): bool
     {
-        return $this->attributes['status'] === self::FAILED;
+        return $this->attributes['status'] == self::FAILED;
     }
 
     /**
