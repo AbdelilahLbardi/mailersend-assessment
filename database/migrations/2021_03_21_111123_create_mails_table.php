@@ -20,7 +20,7 @@ class CreateMailsTable extends Migration
             $table->string('subject')->nullable()->index();
             $table->text('text_content')->nullable();
             $table->text('html_content')->nullable();
-            $table->timestamp('send_at')->nullable();
+            $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });
     }
