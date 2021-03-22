@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/mails', \App\Http\Controllers\Mails\ListMailsController::class)->name('mails.index');
 Route::get('/mails/{mail}', \App\Http\Controllers\Mails\ShowMailController::class)->name('mails.show');
 Route::post('/mails', \App\Http\Controllers\Mails\SendMailController::class)->name('mails.create');
+
+
+Route::view('/{any}', 'welcome')->where('any', '.*');
