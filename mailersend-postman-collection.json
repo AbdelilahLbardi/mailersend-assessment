@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "dd2d7f4a-c4b6-41a7-9d57-54b168b9666b",
+		"name": "MailerSend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SendMail API",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sender",
+							"value": "sender@mailersend.com",
+							"type": "text"
+						},
+						{
+							"key": "recipient",
+							"value": "recipient@mailersend.com",
+							"type": "text"
+						},
+						{
+							"key": "subject",
+							"value": "Subject sample",
+							"type": "text"
+						},
+						{
+							"key": "text_content",
+							"value": "Text content example",
+							"type": "text"
+						},
+						{
+							"key": "html_content",
+							"value": "<b>Html content example</b>",
+							"type": "text"
+						},
+						{
+							"key": "attachments[]",
+							"contentType": "application/x-www-form-urlencoded",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/mails",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"mails"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
