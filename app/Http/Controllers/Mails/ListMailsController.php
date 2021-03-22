@@ -13,6 +13,18 @@ class ListMailsController
      */
     public function __invoke()
     {
-        return new MailCollection(Mail::query()->paginate(20));
+        $mails = Mail::query()
+            ->when(request('sender'), function ($query) {
+                $query->where('sender', 'like', '%' . request('sender') . '%');
+            })
+            ->when(request('recipient'), function ($query) {
+                $query->where('recipient', 'like', '%' . request('recipient') . '%');
+            })
+            ->when(request('subject'), function ($query) {
+                $query->where('subject', 'like', '%' . request('subject') . '%');
+            })
+            ->paginate(20);
+
+        return new MailCollection($mails);
     }
 }
