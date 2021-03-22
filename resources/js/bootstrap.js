@@ -1,4 +1,4 @@
-window._ = require('lodash');
+window.Vue = require('vue').default;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -26,3 +26,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+Vue.component('application', require('./Components/Application.vue').default);
+
+const app = new Vue({
+    el: '#app',
+});

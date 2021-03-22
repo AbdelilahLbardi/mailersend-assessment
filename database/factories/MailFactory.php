@@ -24,8 +24,8 @@ class MailFactory extends Factory
         return [
             'sender' => $this->faker->unique()->safeEmail,
             'recipient' => $this->faker->unique()->safeEmail,
-            'subject' => $this->faker->text(),
-            'text_content' => $this->faker->realText(),
+            'subject' => $this->faker->text(25),
+            'text_content' => $this->faker->realText(50),
             'html_content' => $this->faker->randomHtml(),
         ];
     }
