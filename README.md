@@ -30,6 +30,7 @@ You can import the following [collection](mailersend-postman-collection.json) to
 # What could be done better
 
 Definitely the frontend design and UI. Additionally, the ability to add 'cc' and the possibility to program the mail for a later send.
+And most importantly the End to End tests using Laravel Dusk.
 
 # Final word
 Thank you for giving me the chance to apply to this position.
