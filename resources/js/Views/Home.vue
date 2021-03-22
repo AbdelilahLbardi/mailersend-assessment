@@ -37,6 +37,7 @@
             <th>From</th>
             <th>Subject</th>
             <th>Status</th>
+            <th></th>
           </tr>
 
           <tr v-for="mail in mails">
@@ -51,6 +52,9 @@
             </td>
             <td>
               {{ mail.status.label }}
+            </td>
+            <td>
+              <router-link :to="{ name: 'mail', params: { id: mail.id } }">View</router-link>
             </td>
           </tr>
 
@@ -73,7 +77,7 @@
 
 <script>
 export default {
-  name: "Application",
+  name: "Home",
   data: () => ({
     mails: [],
     links: null,
@@ -91,12 +95,12 @@ export default {
   methods: {
     fetchMails(link) {
       axios.get(link || '/mails', { params : this.filter })
-      .then(response => {
-        response = response.data
-        this.mails = response.data
-        this.links = response.links
-        this.meta = response.meta
-      })
+          .then(response => {
+            response = response.data
+            this.mails = response.data
+            this.links = response.links
+            this.meta = response.meta
+          })
     }
   }
 }
@@ -104,8 +108,8 @@ export default {
 
 <style scoped>
 
-  input, select, button, table, td, tr, th {
-    border: 1px black solid;
-  }
+input, select, button, table, td, tr, th {
+  border: 1px black solid;
+}
 
 </style>

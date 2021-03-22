@@ -30,6 +30,7 @@ class ListMailsController
                         $query->where('status', 'like', request('status'));
                     });
             })
+            ->latest()
             ->paginate(20)
             ->appends(request()->except('page'));
 
