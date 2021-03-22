@@ -71,19 +71,4 @@ class MailFactory extends Factory
             ];
         });
     }
-
-    /**
-     * Indicate the email should be delayed.
-     *
-     * @param null $send_at
-     * @return Factory
-     */
-    public function delayed($send_at = null): Factory
-    {
-        return $this->state(function (array $attributes) use ($send_at) {
-            return [
-                'send_at' => $send_at,
-            ];
-        });
-    }
 }
