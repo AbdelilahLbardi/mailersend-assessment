@@ -8,16 +8,11 @@ use App\Events\NewEmail;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MailResource;
 use App\Models\Attachment;
-use App\Models\Mail;
-use App\Models\Status;
-use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Ramsey\Uuid\Uuid;
 use Throwable;
 
 class SendMailController extends Controller
