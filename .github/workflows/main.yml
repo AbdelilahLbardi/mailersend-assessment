@@ -23,7 +23,7 @@ jobs:
         # Docker Hub image (also with version)
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
           MYSQL_DATABASE:  TEST
         ## map the "external" 33306 port with the "internal" 3306
         ports:
@@ -98,7 +98,7 @@ jobs:
         DB_DATABASE: TEST
         DB_PORT: 33306
         DB_USER: root
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
 
       run: php artisan migrate
     - name: Create Database
@@ -116,7 +116,7 @@ jobs:
         DB_DATABASE: TEST
         DB_PORT: 33306
         DB_USER: root
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
 
       run: vendor/bin/phpunit --testdox
 
