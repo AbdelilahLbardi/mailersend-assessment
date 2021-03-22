@@ -31,6 +31,16 @@ class CreateMailTest extends TestCase
         $this->assertTrue(Mail::query()->with('status')->first()->status->posted());
     }
 
+    public function test_mail_html_content_dont_contain_harmful_content()
+    {
+        $this->mailService->create($this->validParams([
+            'html_content' => "<script>alert('I got your cookies')</script><h1>My html content</h1><p>This is my paragraph</p>"
+        ]));
+
+        $this->assertNotSame("<script>alert('I got your cookies')</script><h1>My html content</h1><p>This is my paragraph</p>", Mail::query()->first()->html_content);
+        $this->assertSame("<h1>My html content</h1><p>This is my paragraph</p>", Mail::query()->first()->html_content);
+    }
+
 
     /**
      * new Mail happy path
