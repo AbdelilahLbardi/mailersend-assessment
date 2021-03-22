@@ -27,7 +27,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-Vue.component('application', require('./components/Application.vue').default);
+Vue.component('application', require('./Components/Application.vue').default);
 
 const app = new Vue({
     el: '#app',
