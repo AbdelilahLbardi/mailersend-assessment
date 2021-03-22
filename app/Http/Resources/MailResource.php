@@ -15,8 +15,9 @@ class MailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'from' => $this->from,
-            'to' => $this->to,
+            'sender' => $this->sender,
+            'recipient' => $this->recipient,
+            'subject' => $this->subject,
             'text_content' => $this->text_content,
             'html_content' => $this->html_content,
             'attachments' => new AttachmentCollection($this->attachments),
